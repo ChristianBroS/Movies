@@ -9,11 +9,16 @@ namespace MovieWebApi.Controllers;
 public class ActorsController : ControllerBase
 {
     [HttpGet("")]
-    public async Task<IActionResult> GetActors(ISender sender, [AsParameters] GetActorsQuery query)
+    public async Task<IActionResult> GetActors(ISender sender, [FromQuery] GetActorsQuery query)
     {
         var result = await sender.Send(query);
 
-        return Ok(result);
+        if (result.IsFailure)
+        {
+            return BadRequest(result.Error);
+        }
+
+        return Ok(result.Value());
     }
 
     [HttpGet("{actorId}")]
@@ -32,8 +37,13 @@ public class ActorsController : ControllerBase
     [HttpPost("")]
     public async Task<IActionResult> CreateActor([FromBody] CreateActorCommand command, ISender sender)
     {
-        await sender.Send(command);
+        var result = await sender.Send(command);
 
-        return Ok();
+        if (result.IsFailure)
+        {
+            return BadRequest(result.Error);
+        }
+
+        return Ok(result.Value());
     }
 }
