@@ -10,4 +10,4 @@ public record ActorResponse(
     int Id,
     string Name,
     DateTime BirthDate,
-    Gender Gender);
+    string Gender);

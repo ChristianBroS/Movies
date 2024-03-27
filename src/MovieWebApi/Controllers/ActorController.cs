@@ -26,7 +26,7 @@ public class ActorsController : ControllerBase
             return BadRequest(result.Error);
         }
 
-        return Ok(result);
+        return Ok(result.Value());
     }
 
     [HttpPost("")]

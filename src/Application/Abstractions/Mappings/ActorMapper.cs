@@ -11,7 +11,7 @@ public static class ActorMapper
             actor.Id,
             actor.Name,
             actor.BirthDate,
-            actor.Gender);
+            actor.Gender.ToString());
     }
 
     public static List<ActorResponse> MapActorsToActorResponse(IEnumerable<Actor> actors)

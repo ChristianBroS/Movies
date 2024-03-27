@@ -1,7 +1,6 @@
 ﻿using Application.Abstractions.Mappings;
 using Domain.Actors;
 using Domain.Shared;
-using MediatR;
 
 namespace Application.Actors.Get;
 
